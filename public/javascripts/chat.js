@@ -35,10 +35,10 @@ jQuery(function($){
                   userSub.removeClass('error');
                   console.log('用户名输入成功');
                   username.val('');
-                  window.location.href = '/chat';
+                  loginUsername.text(data.data);
                   regContainer.hide();
                   chatContainer.show();
-                  loginUsername.text(data.data);
+
               }else{
                   userSub.addClass('error');
                   prompt.empty().append('<h5>!聊天室中用户名已存在</h5>');

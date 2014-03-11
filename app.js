@@ -35,10 +35,6 @@ app.get('/', function(req, res){
     res.render('index');
 });
 
-app.get('/chat', function(req, res){
-    res.render('index');
-});
-
 io.set('log level', 2);
 io.sockets.on('connection', function(socket){
     socket.on('username', function(data, callback){

@@ -1,16 +1,19 @@
 extends layout
 
 block content
-  div.container.user-mes
-    img(src='/img/user.png')
-    span#login-username
-  div.container-fluid
-    div.row-fluid
-      div.span9.chat-content
-      div.span2
-        div.well.sidebar-nav.user-list
+  div.container.chat-container
+    div.container.user-mes
+      img#user-png(src='/img/user.png')
+      span#login-username
+      button.btn.btn-mini.btn-primary#relogin ReLogin
+    div.container-fluid
       div.row-fluid
-        div.span10
-          form.form-inline(action='#', method='post')
-            textarea#send-message(rows='5')
-            button.btn.btn-large.btn-success(type='submit') Post
+        div.span9#chat-content
+        div.span2
+          div.well.sidebar-nav.user-list
+            ul
+        div.row-fluid
+          div.span12
+            form.form-inline#send-message-form
+              textarea#send-message(rows='5')
+              button.btn.btn-large.btn-success#btn-post(type='submit') Post
