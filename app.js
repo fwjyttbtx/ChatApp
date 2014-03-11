@@ -32,7 +32,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', function(req, res){
-    res.render('index');
+    res.render('index', { title: "聊天室" });
 });
 
 io.set('log level', 2);

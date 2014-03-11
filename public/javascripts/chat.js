@@ -54,7 +54,7 @@ jQuery(function($){
     });
 
     sendMessageForm.keydown(function(event){
-        if(event.keyCode == 13){
+        if(event.keyCode == 13 && event.ctrlKey){
             sendMessageForm.submit();
             event.preventDefault();
         }
