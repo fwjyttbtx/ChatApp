@@ -54,6 +54,13 @@ jQuery(function($){
         userList.empty().append(html);
     });
 
+    sendMessageForm.keydown(function(event){
+        if(event.keyCode == 13){
+            sendMessageForm.submit();
+            event.preventDefault();
+        }
+    })
+
     sendMessageForm.submit(function(event){
         event.preventDefault();
         var messageVal = message.val();
@@ -71,6 +78,7 @@ jQuery(function($){
             html += messages[i];
         }
         chatContent.html(html);
+        chatContent.scrollTop(chatContent[0].scrollHeight);
     });
 
     reLogin.click(function(){

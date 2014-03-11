@@ -6,7 +6,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-
+var fs = require('fs');
 var app = express();
 
 var server = http.createServer(app);
@@ -44,6 +44,9 @@ io.sockets.on('connection', function(socket){
         }else{
             callback({flag: true, data: data});
             usernames.push(data);
+            messages.push('<div><strong>----&nbsp;&nbsp;'+ data + '&nbsp;&nbsp;在&nbsp;&nbsp;' +
+                new Date().toLocaleTimeString() +
+                '&nbsp;&nbsp;连接到了聊天室' +'</strong></div>');
             socket.username = data;
             console.log('Usernames are: ' + usernames);
             io.sockets.emit('usernames', usernames);
@@ -54,6 +57,10 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('messages', function(data){
+        fs.appendFile('message.txt', socket.username + ' : '
+            + data + '  (' + new Date().toUTCString() + ')\r\n', function(err){
+            if(err) throw err;
+        });
         if(messages.length < 100){
             messages.push('<div><strong>' + socket.username + '</strong>&nbsp;&nbsp;' +
                 new Date().toLocaleTimeString() +
@@ -82,7 +89,15 @@ io.sockets.on('connection', function(socket){
     socket.on('disconnect', function(){
         if(!usernames) return;
         if(usernames.indexOf(socket.username) > -1){
+            //将当前断开的连接的用户从数组中移除
             usernames.splice(usernames.indexOf(socket.username), 1);
+            //记录用户的登出消息 并且广播出去
+            messages.push('<div><strong>----&nbsp;&nbsp;'+ socket.username + '&nbsp;&nbsp;在&nbsp;&nbsp;' +
+                new Date().toLocaleTimeString() +
+                '&nbsp;&nbsp;离开了聊天室' +'</strong></div>');
+            io.sockets.emit('messages', {
+                messages: messages
+            });
         }
         console.log('Usernames are: ' + usernames);
         io.sockets.emit('usernames', usernames);
