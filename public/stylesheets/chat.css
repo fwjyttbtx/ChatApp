@@ -75,3 +75,7 @@ body {
     top: 10px;
     left: 150px;
 }
+
+#poster-name {
+    color: rgb(0, 255, 163);
+}

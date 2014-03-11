@@ -62,12 +62,12 @@ io.sockets.on('connection', function(socket){
             if(err) throw err;
         });
         if(messages.length < 100){
-            messages.push('<div><strong>' + socket.username + '</strong>&nbsp;&nbsp;' +
+            messages.push('<div><strong id="poster-name">' + socket.username + '</strong>&nbsp;&nbsp;' +
                 new Date().toLocaleTimeString() +
                 '<div>&nbsp;&nbsp;&nbsp;&nbsp;' + data + '</div></div>');
         }else{
             messages.shift();
-            messages.push('<div><strong>' + socket.username + '</strong>&nbsp;&nbsp;' +
+            messages.push('<div><strong id="poster-name">' + socket.username + '</strong>&nbsp;&nbsp;' +
                 new Date().toLocaleTimeString() +
                 '<div>&nbsp;&nbsp;&nbsp;&nbsp;' + data + '</div></div>');
         }

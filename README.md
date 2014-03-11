@@ -29,5 +29,6 @@
 &nbsp; &nbsp; 2.添加用户连接到聊天室的信息和离开聊天室的信息<br />
 &nbsp; &nbsp; 3.添加键盘事件 &nbsp;让sendMessageForm中不用按Post直接Enter也可以发表消息<br />
 &nbsp; &nbsp; 4.记录聊天信息将聊天的所有记录都储存在message.txt文本中<br />
+&nbsp; &nbsp; 5.修改了登陆后错误依然存在的问题 显示了发言人的颜色<br />
 <br />
 聊天室的东西先做到这里了 后面想起功能会继续添加的
