@@ -33,12 +33,11 @@ jQuery(function($){
         socket.emit('username', usernameVal, function(data){
               if(data.flag){
                   userSub.removeClass('error');
-                  console.log('用户名输入成功');
+                  prompt.empty()
                   username.val('');
-                  loginUsername.text(data.data);
                   regContainer.hide();
                   chatContainer.show();
-
+                  loginUsername.text(data.data);
               }else{
                   userSub.addClass('error');
                   prompt.empty().append('<h5>!聊天室中用户名已存在</h5>');
