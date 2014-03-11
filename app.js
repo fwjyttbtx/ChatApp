@@ -80,7 +80,15 @@ io.sockets.on('connection', function(socket){
     socket.on('relogin', function(){
         if(!usernames) return;
         if(usernames.indexOf(socket.username) > -1){
+            //将当前断开的连接的用户从数组中移除
             usernames.splice(usernames.indexOf(socket.username), 1);
+            //记录用户的登出消息 并且广播出去
+            messages.push('<div><strong>----&nbsp;&nbsp;'+ socket.username + '&nbsp;&nbsp;在&nbsp;&nbsp;' +
+                new Date().toLocaleTimeString() +
+                '&nbsp;&nbsp;离开了聊天室' +'</strong></div>');
+            io.sockets.emit('messages', {
+                messages: messages
+            });
         }
         console.log('Usernames are: ' + usernames);
         io.sockets.emit('usernames', usernames);
