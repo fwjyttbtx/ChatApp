@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div.container.reg-container.home
+    div.jumbotron
+      h1 欢迎来到我的聊天室
+      img(src="/img/chat.png")
+      form.form-horizontal#user-reg-form
+        div.input-append.user-sub.control-group
+          input.span3#username(type='text', placeholder='请输入用户名')
+          button.btn.btn-primary(type='submit') Go!
+          span#prompt
+  div.container.chat-container
+    div.container.user-mes
+      img#user-png(src='/img/user.png')
+      span#login-username
+      button.btn.btn-mini.btn-primary#relogin ReLogin
+    div.container-fluid
+      div.row-fluid
+        div.span9#chat-content
+        div.span2
+          div.well.sidebar-nav.user-list
+            ul
+        div.row-fluid
+          div.span12
+            form.form-inline#send-message-form
+              textarea#send-message(rows='5')
+              button.btn.btn-large.btn-success#btn-post(type='submit') Post
