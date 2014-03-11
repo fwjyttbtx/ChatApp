@@ -77,7 +77,7 @@ io.sockets.on('connection', function(socket){
 
     });
 
-    socket.on('relogin', function(){
+    /*socket.on('relogin', function(){
         if(!usernames) return;
         if(usernames.indexOf(socket.username) > -1){
             //将当前断开的连接的用户从数组中移除
@@ -92,7 +92,7 @@ io.sockets.on('connection', function(socket){
         }
         console.log('Usernames are: ' + usernames);
         io.sockets.emit('usernames', usernames);
-    });
+    });*/
 
     socket.on('disconnect', function(){
         if(!usernames) return;
