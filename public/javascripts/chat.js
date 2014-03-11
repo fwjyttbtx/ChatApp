@@ -34,10 +34,11 @@ jQuery(function($){
               if(data.flag){
                   userSub.removeClass('error');
                   console.log('用户名输入成功');
-                  loginUsername.text(data.data);
+                  username.val('');
+                  window.location.href = '/chat';
                   regContainer.hide();
                   chatContainer.show();
-
+                  loginUsername.text(data.data);
               }else{
                   userSub.addClass('error');
                   prompt.empty().append('<h5>!聊天室中用户名已存在</h5>');
@@ -55,7 +56,11 @@ jQuery(function($){
 
     sendMessageForm.submit(function(event){
         event.preventDefault();
-        socket.emit('messages', message.val());
+        var messageVal = message.val();
+        //解决html转义问题.
+        var mes1 = messageVal.replace(/</g, '&lt;');
+        var mes2 = mes1.replace(/>/g, '&gt;');
+        socket.emit('messages', mes2);
         message.val('').focus();
     });
 
@@ -69,7 +74,9 @@ jQuery(function($){
     });
 
     reLogin.click(function(){
+        socket.emit('relogin');
         regContainer.show();
+        username.focus();
         chatContainer.hide();
     });
 })

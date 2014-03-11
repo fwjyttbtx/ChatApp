@@ -35,6 +35,10 @@ app.get('/', function(req, res){
     res.render('index');
 });
 
+app.get('/chat', function(req, res){
+    res.render('index');
+});
+
 io.set('log level', 2);
 io.sockets.on('connection', function(socket){
     socket.on('username', function(data, callback){
@@ -68,6 +72,15 @@ io.sockets.on('connection', function(socket){
             messages: messages
         });
 
+    });
+
+    socket.on('relogin', function(){
+        if(!usernames) return;
+        if(usernames.indexOf(socket.username) > -1){
+            usernames.splice(usernames.indexOf(socket.username), 1);
+        }
+        console.log('Usernames are: ' + usernames);
+        io.sockets.emit('usernames', usernames);
     });
 
     socket.on('disconnect', function(){
