@@ -57,7 +57,8 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('messages', function(data){
-        fs.appendFile('message.txt', socket.username + ' : '
+        fs.appendFile('./messageData/message '+ new Date().toDateString() +'.txt',
+            socket.username + ' : '
             + data + '  (' + new Date().toUTCString() + ')\r\n', function(err){
             if(err) throw err;
         });
