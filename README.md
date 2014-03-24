@@ -20,7 +20,7 @@
 &nbsp; &nbsp; &nbsp; 将用户名保存在socket中,当连接断开的时候,将此用户删除<br />
 &nbsp; &nbsp; &nbsp; 调用客户端的回调.创建成功就隐藏登陆,显示聊天室<br />
 &nbsp; &nbsp;5.聊天室中的消息默认是保存100条,超过100条会shift掉之前的数据,这个数据是保存在数组中的<br />
-&nbsp; &nbsp; &nbsp; *暂未解决的问题: html未转义,会被脚本侵入<br />
+&nbsp; &nbsp; &nbsp; *暂未解决的问题: html未转义,会被脚本侵入（已解决）<br />
 &nbsp; &nbsp;6.添加聊天室中登出的操作 添加button,监听click事件<br />
 <br />
 ###一些改动<br />
@@ -30,6 +30,8 @@
 &nbsp; &nbsp; 3.添加键盘事件 &nbsp;让sendMessageForm中不用按Post直接Enter也可以发表消息<br />
 &nbsp; &nbsp; 4.记录聊天信息将聊天的所有记录都储存在message.txt文本中<br />
 &nbsp; &nbsp; 5.修改了登陆后错误依然存在的问题 显示了发言人的颜色<br />
-&nbsp; &nbsp; 6.添加title和将发送消息快捷键改成Ctrl+Enter<br />
+&nbsp; &nbsp; 6.添加title和将发送消息快捷键改成Ctrl+Enter<br /><br />
+&nbsp; &nbsp; 2014年3月24日10:01:11<br />
+&nbsp; &nbsp; 7.添加创建本地存储文件夹的代码<br />
 <br />
 聊天室的东西先做到这里了 后面想起功能会继续添加的

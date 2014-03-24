@@ -57,11 +57,18 @@ io.sockets.on('connection', function(socket){
     });
 
     socket.on('messages', function(data){
+        //判断文件夹是否存在
+        if(!fs.existsSync('./messageData')){
+            console.log('创建messageData文件夹');
+            fs.mkdirSync('./messageData');
+        }
+
         fs.appendFile('./messageData/message '+ new Date().toDateString() +'.txt',
             socket.username + ' : '
             + data + '  (' + new Date().toUTCString() + ')\r\n', function(err){
             if(err) throw err;
         });
+        //这里设置数据存储的条数
         if(messages.length < 100){
             messages.push('<div><strong id="poster-name">' + socket.username + '</strong>&nbsp;&nbsp;' +
                 new Date().toLocaleTimeString() +
